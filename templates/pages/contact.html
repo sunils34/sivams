@@ -1,0 +1,67 @@
+{%include 'pages/head.html'%}
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+        <![endif]-->
+
+        <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
+        {%include 'pages/navbar.html' %}
+
+        <div class="container">
+
+            <!-- Example row of columns -->
+            <div >
+                <div class="page-header">
+                    <h2>Contact Siva</h2>
+                </div>
+
+                {%if form_submit%}
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <p class="title"><strong>Success!</strong></p>
+                    <p>We've received your message. Please allow us up to 24 hours to respond.</p>
+                </div>
+                {%endif %}
+
+                <p>We want to hear from you! Just enter your name, email address, and message into the form below and send away.</p>
+
+                <form class='' action="/contact" method="post"> {% csrf_token %}
+                    <fieldset>
+                        <div class="control-group">
+                            <label class='control-label' for="name"><span>Name:</span></label>
+                            <div class="controls">
+                                <input tabindex="1" id="name" name="name" label="Name" type="text" value="{{name}}">
+                            </div>
+                        </div>
+                        <div class="control-group {%if form_email_failure%}error{%endif%}">
+                            <label class='control-label' for="email"><span>Email:</span></label>
+                            <div class="controls">
+                                <input tabindex="2" id="email" name="email" label="Email" type="text" value="{{email}}">
+                                {%if form_email_failure%}
+                                <span class="help-inline">Please enter a valid email address</span>
+                                {%endif%}
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class='control-label' for="message"><span>Message:</span></label>
+                            <div class="controls">
+                                <textarea tabindex="3" class="span8" id="message" name="body" label="Message" rows="7">{{body}}</textarea>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <input tabindex="4" type="submit" class="btn btn-primary large" value="Send message">
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+
+
+        </div> <!-- /container -->
+        <hr>
+
+        {% include 'pages/footer.html'%}
+        
+        {% include 'pages/scripts.html'%}
+
+    </body>
+</html>

@@ -1,0 +1,97 @@
+{%include 'pages/head.html'%}
+<body>
+    <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+    {%include 'pages/navbar.html' %}
+    <div class="container">
+        <div>
+            <div class='row' id='chargebody'>
+
+                {% if charge %}
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <p class="title"><strong>Success!</strong></p>
+                    <p>{{customer}} has been successfully charged <b>${{amount}}<b>!</p>
+                </div>
+                {%else %}
+                {% if error %}
+                <div class="alert alert-error">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <p class="title"><strong>Error!</strong></p>
+                    <p>{{error}}</p>
+                </div>
+                {%endif %}
+                <form action="" method="POST" id="payment-form" class='span8'> {%csrf_token%}
+                    <div class="form-row">
+                        <label>Customer Description (Name and Project)</label>
+                        <input type="text" size="4" name="customer" autocomplete="off" />
+                    </div>
+                    <div class="form-row">
+                        <label>Amount (USD 20.12)</label>
+                        <input type="text" size="20" name="amount" autocomplete="off" />
+                    </div>
+                    <div class="form-row">
+                        <label>Card Number</label>
+                        <input type="text" size="20" autocomplete="off" class="card-number"/>
+                    </div>
+                    <div class="form-row">
+                        <label>CVC</label>
+                        <input type="text" maxlength="4" size="4" autocomplete="off" class="card-cvc span1"/>
+                    </div>
+                    <div class="form-row">
+                        <label>Expiration (MM/YYYY)</label>
+                        <input type="text" size="2" maxlength="2" class="card-expiry-month span1"/>
+                        <span> / </span>
+                        <input type="text" size="4" maxlength="4" class="card-expiry-year span1"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary submit-button">Submit Payment</button>
+                </form>
+                {%endif%}
+            </div>
+        </div>
+    </div>
+    <hr>
+    {% include 'pages/footer.html'%}
+    {% include 'pages/scripts.html'%}
+    <script type="text/javascript">
+        // this identifies your website in the createToken call below
+    Stripe.setPublishableKey('{{STRIPE_PUBLISHABLE_KEY}}');
+
+    function stripeResponseHandler(status, response) {
+        if (response.error) {
+            // re-enable the submit button
+            $('.submit-button').removeAttr("disabled");
+            // show the errors on the form
+            $('#paymenterror').remove();
+            $('<div id="paymenterror" class="alert alert-error"><button type="button" class="close" data-dismiss="alert">×</button><p class="title"><strong>Error!</strong></p><p class="payment-error">'+response.error.message+'</p></div>').prependTo('#chargebody');
+        } else {
+            var form$ = $("#payment-form");
+            // token contains id, last4, and card type
+            var token = response['id'];
+            // insert the token into the form so it gets submitted to the server
+            form$.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+            // and submit
+            form$.get(0).submit();
+        }
+    }
+
+    $(document).ready(function() {
+            $("#payment-form").submit(function(event) {
+                // disable the submit button to prevent repeated clicks
+                $('.submit-button').attr("disabled", "disabled");
+
+                Stripe.createToken({
+number: $('.card-number').val(),
+cvc: $('.card-cvc').val(),
+exp_month: $('.card-expiry-month').val(),
+exp_year: $('.card-expiry-year').val()
+}, stripeResponseHandler);
+
+                // prevent the form from submitting with the default action
+                return false;
+                });
+            });
+
+    </script>
+
+</body>
+</html>
