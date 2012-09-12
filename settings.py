@@ -60,7 +60,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = PROJECT_ROOT + '/static/'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -113,13 +113,41 @@ TEMPLATE_DIRS = (
     PROJECT_ROOT + '/templates'
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+        # default template context processors
+        'django.core.context_processors.auth',
+        'django.core.context_processors.debug',
+        'django.core.context_processors.i18n',
+        'django.core.context_processors.media',
+
+        # django 1.2 only
+        'django.contrib.messages.context_processors.messages',
+
+        # required by django-admin-tools
+        'django.core.context_processors.request',
+        )
+
+ADMIN_TOOLS_INDEX_DASHBOARD = 'sivams.dashboard.CustomIndexDashboard'
+ADMIN_TOOLS_APP_INDEX_DASHBOARD = 'sivams.dashboard.CustomAppIndexDashboard'
+
 INSTALLED_APPS = (
+    
+        'admin_tools',
+        'admin_tools.theming',
+        'admin_tools.menu',
+        'admin_tools.dashboard',
+
+
+
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.admin',
+
+    'app',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
