@@ -3,15 +3,16 @@
     <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
     {%include 'pages/navbar.html' %}
     <div class="container">
+        <div class="page-header"><h4>Client Charge Console</h4></div>
         <div>
-            <div class='row' id='chargebody'>
+            <div class='row span6 offset3' id='chargebody'>
 
                 {% if charge %}
                 <div class="alert alert-success">
                     <button type="button" class="close" data-dismiss="alert">×</button>
                     <p class="title"><strong>Success!</strong></p>
-                    <p>{{customer}} has been successfully charged <b>${{amount}}<b>!</p>
-                </div>
+                    <p>{{customer}} has been successfully charged <b>${{amount}}</b>!</p>
+                    <p><a href="https://manage.stripe.com/#dashboard" target="_blank" class="btn btn-primary btn-large">Go to the Stripe Dashboard</a></p></div>
                 {%else %}
                 {% if error %}
                 <div class="alert alert-error">
@@ -20,7 +21,7 @@
                     <p>{{error}}</p>
                 </div>
                 {%endif %}
-                <form action="" method="POST" id="payment-form" class='span8'> {%csrf_token%}
+                <form action="" method="POST" id="payment-form" class='span6 offset1'> {%csrf_token%}
                     <div class="form-row">
                         <label>Customer Description (Name and Project)</label>
                         <input type="text" size="4" name="customer" autocomplete="off" />
