@@ -6,6 +6,7 @@ from django.core.mail import send_mail
 from django.core.validators import validate_email
 from django.conf import settings
 from django.forms import ValidationError
+from django.contrib.auth.decorators import login_required
 import stripe
 
 def home(request):
@@ -39,6 +40,7 @@ def contact(request):
             params['form_email_failure'] = True;
     return render_to_response('pages/contact.html', params); 
 
+@login_required
 def client_charge(request):
     params={'settings':settings};
     params.update(csrf(request))
