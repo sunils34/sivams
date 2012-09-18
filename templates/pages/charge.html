@@ -4,8 +4,8 @@
     {%include 'pages/navbar.html' %}
     <div class="container">
         <div class="page-header"><h4>Client Charge Console</h4></div>
-        <div>
-            <div class='row span6 offset3' id='chargebody'>
+        <div class="row">
+            <div class='span4 offset4' id='chargebody'>
 
                 {% if charge %}
                 <div class="alert alert-success">
@@ -21,7 +21,7 @@
                     <p>{{error}}</p>
                 </div>
                 {%endif %}
-                <form action="" method="POST" id="payment-form" class='span6 offset1'> {%csrf_token%}
+                <form action="" method="POST" id="payment-form"> {%csrf_token%}
                     <div class="form-row">
                         <label>Customer Description (Name and Project)</label>
                         <input type="text" size="4" name="customer" autocomplete="off" />
