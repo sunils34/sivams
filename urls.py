@@ -10,7 +10,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     url(r'^admin_tools/', include('admin_tools.urls')),
-    url(r'^admin/client/charge[/]*$', 'sivams.app.views.client_charge', name='client_charge'),
+    url(r'^admin/client/charge[/]*$', 'sivams.payments.views.client_charge', name='client_charge'),
     url(r'^[/]*$', 'sivams.app.views.home', name='home'),
     (r'^accounts/login/$', 'django.contrib.auth.views.login'),
     url(r'^about[/]*$', 'sivams.app.views.about', name='about'),
