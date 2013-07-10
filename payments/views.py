@@ -18,34 +18,39 @@ def client_charge(request):
     if request.user.is_authenticated() and request.user.is_staff:
         token = request.POST.get('stripeToken')
         amount = request.POST.get('amount')
-        customer = request.POST.get('customer')
+        description = request.POST.get('description')
         email = request.POST.get('email')
-        name = request.POST.get('name')
+        customername = request.POST.get('customername')
+
+        if not email:
+            email = ""
+        if not customername:
+            customername = None;
 
         if token:
             try:
-                stripe.api_key = settings.STRIPE_SECRET_KEY_TEST
+                stripe.api_key = settings.STRIPE_SECRET_KEY_LIVE
                 # create the charge on Stripe's servers - this will charge the user's card
                 charge = stripe.Charge.create(
                         amount=int(float(amount)*100), # amount in cents, again
                         currency="usd",
                         card=token,
-                        description=customer
+                        description=description
                         )
                 params['charge']  = True 
                 params['amount'] = amount
-                params['customer'] = customer 
-                send_invoice(charge, customer, amount);
+                params['customer'] = description 
+                send_invoice(charge, description, amount, email=email, name=customername);
             except Exception, e:
                 params['error'] = str(e);
         
 
-        params['STRIPE_PUBLISHABLE_KEY'] = settings.STRIPE_PUBLISHABLE_KEY_TEST
+        params['STRIPE_PUBLISHABLE_KEY'] = settings.STRIPE_PUBLISHABLE_KEY_LIVE
         return render_to_response('pages/charge.html', params) 
     else:
         return HttpResponseRedirect('/') 
 
-def send_invoice(charge, description, amount, email=None, name=None):
+def send_invoice(charge, description, amount, email="", name=None):
     last4 = charge['card']['last4']
     card_type = charge['card']['type']
     chid = charge['id'];
@@ -55,7 +60,7 @@ def send_invoice(charge, description, amount, email=None, name=None):
     f.close(); 
     f=open(fname, 'r'); 
     email = EmailMessage('Billing Receipt from Siva Microbiological Solutions', 'Attached is your receipt charged by Siva Microbiological Solutions LLC. (sivams.com).', 'Siva Microbiological Solutions <info@sivams.com>',
-                        ['', ''], ['sunils34@gmail.com', 'lakshmi@sivams.com'],
+                        [email,], ['sunils34@gmail.com', 'lakshmi@sivams.com'],
                                     headers = {'Reply-To': 'info@sivams.com'});
 
     email.attach(chid+".pdf", f.read(), "application/pdf");

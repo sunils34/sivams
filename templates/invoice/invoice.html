@@ -1,0 +1,46 @@
+<html>
+    <body>
+        <p>
+        <table>
+            <tr><td colspan="6" style="font-size:20px">Siva Microbiological Solutions LLC.</td>
+            <td colspan="1" style="font-size:20px; font-family='Arial Black'">PAID</td></tr>
+        </table>
+
+        {% if to or to_contact_email %}
+        TO:
+        </br>
+        {{to}}</br>
+
+        {{to_contact_email}}
+
+        {{to_contact_phone}}
+        {%endif%}
+
+        </p>
+        <p>
+        <b>Billing Date:</b>
+
+        {{date|date:"M d Y"}}<br />
+
+        <b>Receipt Number:</b>
+
+        {{invoice_number}}
+
+        </p>
+        <p><b>Description</b></p>
+        <p>{{description}}</p>
+        <table id="lineItems">
+            <tr ><td colspan="7">&nbsp;</td><td><b>Amount Paid:</b></td><td colspan="2">${{amount_paid}}</td></tr>
+            <tr ><td colspan="7">&nbsp;</td><td><b>Method:</b></td><td colspan="2">{{card_type}} {{card_number}}</td></tr>
+        </table>
+        <hr />
+        <p>
+        Siva Microbiological Solutions, LLC.<br/>
+        360 George Patterson Blvd<br/>
+        Suite 105<br/> 
+        Bristol, PA 19007<br/>
+        </p>
+    </body>
+</html>
+
+

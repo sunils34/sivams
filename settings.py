@@ -1,15 +1,15 @@
 # Django settings for sivams project.
+from local_settings import *
 
-DEBUG = True
+DEBUG = True 
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+     ('Sunil Sadasivan', 'sunil@sivams.com'),
 )
 
 MANAGERS = ADMINS
 
-DATABASE_PASSWORD = ''
 
 DATABASES = {
     'default': {

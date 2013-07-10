@@ -5,7 +5,7 @@
     <div class="container">
         <div class="page-header"><h4>Client Charge Console</h4></div>
         <div class="row">
-            <div class='span4 offset4' id='chargebody'>
+            <div class='span4' id='chargebody'>
 
                 {% if charge %}
                 <div class="alert alert-success">
@@ -23,26 +23,32 @@
                 {%endif %}
                 <form action="" method="POST" id="payment-form"> {%csrf_token%}
                     <div class="form-row">
-                        <label>Customer Description (Name and Project)</label>
-                        <input type="text" size="4" name="customer" autocomplete="off" />
+                        <label>Project/Charge Description</label>
+                        <input type="text" size="4" name="description" autocomplete="off" placeholder="For invoice and billing" />
                     </div>
                     <div class="form-row">
-                        <label>Amount (USD 20.12)</label>
-                        <input type="text" size="20" name="amount" autocomplete="off" />
+                        <label>Customer Name</label>
+                        <input type="text" size="4" name="customername" autocomplete="off" placeholder="Full name" />
+                    </div>
+                    <div class="form-row">
+                        <label>Customer Email</label>
+                        <input type="text" size="4" name="email" autocomplete="off" placeholder="For invoice (not required)" />
+                    </div>
+                    <div class="form-row">
+                        <label>Amount</label>
+                        <input type="text" size="20" name="amount" autocomplete="off" placeholder="20.12" />
                     </div>
                     <div class="form-row">
                         <label>Card Number</label>
-                        <input type="text" size="20" autocomplete="off" class="card-number"/>
+                        <input type="text" class="cc-number" x-autocompletetype="cc-number" placeholder="Card number" required>
                     </div>
                     <div class="form-row">
                         <label>CVC</label>
-                        <input type="text" maxlength="4" size="4" autocomplete="off" class="card-cvc span1"/>
+                         <input type="text" class="cc-cvc" pattern="\d*" x-autocompletetype="cc-csc" placeholder="Security code" required maxlength="4" autocomplete="off">
                     </div>
                     <div class="form-row">
                         <label>Expiration (MM/YYYY)</label>
-                        <input type="text" size="2" maxlength="2" class="card-expiry-month span1"/>
-                        <span> / </span>
-                        <input type="text" size="4" maxlength="4" class="card-expiry-year span1"/>
+                        <input type="text" class="cc-exp" x-autocompletetype="cc-exp" placeholder="Expires MM/YY" required maxlength="9">
                     </div>
                     <button type="submit" class="btn btn-primary submit-button">Submit Payment</button>
                 </form>
@@ -53,6 +59,7 @@
     <hr>
     {% include 'pages/footer.html'%}
     {% include 'pages/scripts.html'%}
+    <script type="text/javascript" src="/js/vendor/jquery.payment.js"></script>
     <script type="text/javascript">
         // this identifies your website in the createToken call below
     Stripe.setPublishableKey('{{STRIPE_PUBLISHABLE_KEY}}');
@@ -76,15 +83,23 @@
     }
 
     $(document).ready(function() {
+
+            $('.cc-number').payment('formatCardNumber');
+            $('.cc-exp').payment('formatCardExpiry');
+            $('.cc-cvc').payment('formatCardCVC');
+
             $("#payment-form").submit(function(event) {
                 // disable the submit button to prevent repeated clicks
                 $('.submit-button').attr("disabled", "disabled");
 
+                var expiry = $('.cc-exp').payment("cardExpiryVal")
+                var expiry = $('.cc-exp').payment("cardExpiryVal")
+
                 Stripe.createToken({
-number: $('.card-number').val(),
-cvc: $('.card-cvc').val(),
-exp_month: $('.card-expiry-month').val(),
-exp_year: $('.card-expiry-year').val()
+number: $('.cc-number').val(),
+cvc: $('.cc-cvc').val(),
+exp_month: expiry.month,
+exp_year:expiry.year 
 }, stripeResponseHandler);
 
                 // prevent the form from submitting with the default action
