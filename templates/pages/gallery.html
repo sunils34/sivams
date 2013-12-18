@@ -1,0 +1,95 @@
+{%include 'pages/head.html'%}
+
+    <link rel="stylesheet" href="http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+    <link rel="stylesheet" href="/blueimp/css/bootstrap-image-gallery.min.css">
+
+    <body data-spy="scroll">
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+        <![endif]-->
+
+        <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
+        {%include 'pages/navbar.html' %}
+
+        <div class="container">
+
+            <!-- Example row of columns -->
+            <div class="row">
+                <div class="span3 bs-docs-sidebar" id="sidebar">
+                    <ul class="nav nav-list bs-docs-sidenav">
+                        <li class="active"><a href="#bacteria"><i class="icon-chevron-right"></i> Bacteria</a></li>
+                        <li><a href="#fungi"><i class="icon-chevron-right"></i> Fungi & Yeast</a></li>
+                        <li><a href="#algae"><i class="icon-chevron-right"></i> Algae</a></li>
+                    </ul>
+                </div>
+
+                <div class="span9" style='margin-top:-30px'>
+                    <section id="bacteria">
+                        <div class="page-header">
+                            <h2>Bacteria</h2>
+                        </div>
+                        <div id="links">
+                            <a href="images/banana.jpg" title="Banana" data-gallery>
+                                <img src="images/thumbnails/banana.jpg" alt="Banana">
+                            </a>
+                            <a href="images/apple.jpg" title="Apple" data-gallery>
+                                <img src="images/thumbnails/apple.jpg" alt="Apple">
+                            </a>
+                            <a href="images/orange.jpg" title="Orange" data-gallery>
+                                <img src="images/thumbnails/orange.jpg" alt="Orange">
+                            </a>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div> <!-- /container -->
+        <hr>
+
+        {% include 'pages/footer.html'%}
+
+        {% include 'pages/scripts.html'%}
+        <script>
+            $(function() {
+                $('#sidebar .nav').affix();
+            });
+        </script>
+
+        <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+        <div id="blueimp-gallery" class="blueimp-gallery">
+            <!-- The container for the modal slides -->
+            <div class="slides"></div>
+            <!-- Controls for the borderless lightbox -->
+            <h3 class="title"></h3>
+            <a class="prev">‹</a>
+            <a class="next">›</a>
+            <a class="close">×</a>
+            <a class="play-pause"></a>
+            <ol class="indicator"></ol>
+            <!-- The modal dialog, which will be used to wrap the lightbox content -->
+            <div class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title"></h4>
+                        </div>
+                        <div class="modal-body next"></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default pull-left prev">
+                                <i class="glyphicon glyphicon-chevron-left"></i>
+                                Previous
+                            </button>
+                            <button type="button" class="btn btn-primary next">
+                                Next
+                                <i class="glyphicon glyphicon-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+        <script src="/blueimp/js/bootstrap-image-gallery.min.js"></script>
+    </body>
+</html>

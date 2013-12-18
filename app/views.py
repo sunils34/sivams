@@ -17,6 +17,11 @@ def about(request):
     params['about'] = True
     return render_to_response('pages/about.html', params); 
 
+def gallery(request):
+    params = {}
+    params['gallery'] = True
+    return render_to_response('pages/gallery.html', params); 
+
 def contact(request):
     params = {}
     params['contact'] = True

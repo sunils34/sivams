@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     (r'^accounts/login/$', 'django.contrib.auth.views.login'),
     url(r'^about[/]*$', 'sivams.app.views.about', name='about'),
     url(r'^contact[/]*$', 'sivams.app.views.contact', name='contact'),
+    url(r'^gallery[/]*$', 'sivams.app.views.gallery', name='gallery'),
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root':settings.STATIC_ROOT}),
     url(r'^(?P<path>.*)$', 'django.views.static.serve', {'document_root':settings.PROJECT_ROOT + '/templates'}),
     # Examples:
