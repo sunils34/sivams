@@ -1,0 +1,52 @@
+{%include 'pages/head.html'%}
+<body> 
+    <!--[if lt IE 7]>
+    <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+    <![endif]-->
+
+    <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
+    {%include 'pages/navbar.html' %}
+
+    <div class="jumbotron masthead" style="position: relative;">
+        <div class="background" style="background-image: url(/img/gallery/front4.jpg); "></div>
+        <div class="container">
+            <h2>Services</h2>
+            <p>Siva Microbiological Solutions provides all the services you would ever need!</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="span3">
+                <li><h3>ASTM D 5588</h3></li>
+                <li><h3>ASTM D 2574</h3></li>
+                <li><h3>ASTM D 5590</h3></li>
+                <li><h3>ASTM D 5589</h3></li>
+                <li><h3>ASTM D 3273</h3></li>
+            </div>
+            <div class="span3">
+                <li><h3>ASTM G21</h3></li>
+                <li><h3>ASTM E 2081</h3></li>
+                <li><h3>ASTM C 1338</h3></li>
+                <li><h3>ASTM D 2020</h3></li>
+                <li><h3>JIS L 1902 </h3></li>
+                <li><h3>JIS Z 2801 </h3></li>
+            </div>
+            <div class="span3">
+                <li><h3>USP &lt;51&gt;></h3></li>
+                <li><h3>USP &lt;61&gt;></h3></li>
+                <li><h3>AATCC 100</h3></li>
+                <li><h3>AATCC 174 [Part I, II, III]</h3></li>
+            </div>
+            <div class="span3">
+                <li><h3>AATCC 30</h3></li>
+                <li><h3>AOAC [955]</h3></li>
+                <li><h3>AATCC 147</h3></li>
+            </div>
+        </div>
+    </div> <!-- /container -->
+    <hr>
+
+    {% include 'pages/footer.html'%}
+    {% include 'pages/scripts.html'%}
+</body>
+</html>
