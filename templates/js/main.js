@@ -35,6 +35,5 @@ $(function() {
     }; 
 
 
-    $('.jumbotron.masthead .background').bgfader();
 
 }); 
