@@ -6,8 +6,23 @@
 
 
 
+.photogallery img {
+    width: 100px; 
+    height: 100px;
+}
 
+.brand {
+    height: 35px;
+    margin-top: -6px;
+}
 
+.jumbotron .container {
+    background: rgba(0,0,0,.3)
+}
+
+.publist li {
+    margin-bottom:20px;
+}
 
 
 

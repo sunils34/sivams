@@ -12,10 +12,25 @@ def home(request):
     params['home'] = True 
     return render_to_response('pages/index.html', params)
 
+def construction(request):
+    params = {}
+    params['construction'] = True 
+    return render_to_response('pages/construction.html', params)
+
 def about(request):
     params = {}
     params['about'] = True
     return render_to_response('pages/about.html', params); 
+
+def services(request):
+    params = {}
+    params['services'] = True
+    return render_to_response('pages/services.html', params); 
+
+def publications(request):
+    params = {}
+    params['publications'] = True
+    return render_to_response('pages/publications.html', params); 
 
 def gallery(request):
     params = {}
@@ -35,7 +50,7 @@ def contact(request):
             params['form_submit'] = True;
             send_mail('[SIVAMS FORM] Message Received', 
                     '''%s\n\nFrom: %s'''%(body, name) , email,
-                    ['info@sivams.com'], fail_silently=False)
+                    ['lakshmi@sivamicrobialsolutions.com', 'sunil@sivamicrobialsolutions.com'], fail_silently=False)
         except ValidationError:
             params['name'] = name;
             params['email'] = email;
