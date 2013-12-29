@@ -1,0 +1,31 @@
+{%include 'pages/head.html'%}
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+        <![endif]-->
+
+        <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
+        {%include 'pages/navbar.html' %}
+
+        <div class="jumbotron masthead" style='position:relative; box-sixing:border-box' >
+            <div class="container">
+                <h2>Siva Microbiological Solutions LLC.</h2>
+                <p> We're doing some maintenance!  Please come back later</>
+            </div>
+        </div>
+
+        <div class="container">
+
+
+
+        </div> <!-- /container -->
+        <hr>
+        {% include 'pages/footer.html'%}
+        
+        {% include 'pages/scripts.html'%}
+
+        <script>
+            $('#myCarousel').carousel();
+        </script>
+    </body>
+</html>

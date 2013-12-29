@@ -21,8 +21,7 @@
                     <p class="title"><strong>Success!</strong></p>
                     <p>We've received your message. Please allow us up to 24 hours to respond.</p>
                 </div>
-                {%endif %}
-
+                {% else %}
                 <p>We want to hear from you! Just enter your name, email address, and message into the form below and send away.</p>
 
                 <form class='' action="/contact" method="post"> {% csrf_token %}
@@ -53,6 +52,8 @@
                         </div>
                     </fieldset>
                 </form>
+                {%endif %}
+
             </div>
 
 
