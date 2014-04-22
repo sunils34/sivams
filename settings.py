@@ -1,7 +1,7 @@
 # Django settings for sivams project.
 from local_settings import *
 
-DEBUG = True 
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (

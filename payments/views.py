@@ -60,7 +60,7 @@ def send_invoice(charge, description, amount, email="", name=None):
     f.close(); 
     f=open(fname, 'r'); 
     email = EmailMessage('Billing Receipt from Siva Microbiological Solutions', 'Attached is your receipt charged by Siva Microbiological Solutions LLC. (sivams.com).', 'Siva Microbiological Solutions <info@sivams.com>',
-                        [email,], ['sunils34@gmail.com', 'lakshmi@sivams.com'],
+                        [email,], ['sunils34@gmail.com', 'lakshmi@sivams.com', 'lakshmi@sivamicrobialsolutions.com'],
                                     headers = {'Reply-To': 'info@sivams.com'});
 
     email.attach(chid+".pdf", f.read(), "application/pdf");

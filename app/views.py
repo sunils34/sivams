@@ -6,6 +6,7 @@ from django.core.mail import send_mail
 from django.core.validators import validate_email
 from django.conf import settings
 from django.forms import ValidationError
+import os
 
 def home(request):
     params = {}
@@ -35,6 +36,8 @@ def publications(request):
 def gallery(request):
     params = {}
     params['gallery'] = True
+    params['bacteria'] = os.listdir(settings.PROJECT_ROOT + "/templates/img/gallery/bacteria/")
+    params['fungi'] = os.listdir(settings.PROJECT_ROOT + "/templates/img/gallery/fungi/")
     return render_to_response('pages/gallery.html', params); 
 
 def contact(request):
