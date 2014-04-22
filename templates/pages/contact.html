@@ -22,7 +22,7 @@
                     <p>We've received your message. Please allow us up to 24 hours to respond.</p>
                 </div>
                 {% else %}
-                <p>We want to hear from you! Just enter your name, email address, and message into the form below and send away.</p>
+                <h5>For inquiries please complete the form below.</h5>
 
                 <form class='' action="/contact" method="post"> {% csrf_token %}
                     <fieldset>
@@ -44,7 +44,7 @@
                         <div class="control-group">
                             <label class='control-label' for="message"><span>Message:</span></label>
                             <div class="controls">
-                                <textarea tabindex="3" class="span8" id="message" name="body" label="Message" rows="7">{{body}}</textarea>
+                                <textarea style="resize:none" tabindex="3" class="span8" id="message" name="body" label="Message" rows="7">{{body}}</textarea>
                             </div>
                         </div>
                         <div class="actions">

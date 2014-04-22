@@ -29,15 +29,23 @@
                             <h2>Bacteria</h2>
                         </div>
                         <div id="links">
-                            <a href="/img/gallery/fungi1.jpg" title="Banana" data-gallery>
-                                <img src="/img/gallery/fungi1.jpg" alt="Banana">
+                            {% for img in bacteria %}
+                            <a href="/img/gallery/bacteria/{{img}}" data-gallery>
+                                <img src="/img/gallery/bacteria/{{img}}" />
                             </a>
-                            <a href="images/apple.jpg" title="Apple" data-gallery>
-                                <img src="images/thumbnails/apple.jpg" alt="Apple">
+                            {% endfor %}
+                        </div>
+                    </section>
+                    <section id="fungi">
+                        <div class="page-header">
+                            <h2>Fungi</h2>
+                        </div>
+                        <div id="links1">
+                            {% for img in fungi %}
+                            <a href="/img/gallery/fungi/{{img}}" data-gallery>
+                                <img src="/img/gallery/fungi/{{img}}" />
                             </a>
-                            <a href="images/orange.jpg" title="Orange" data-gallery>
-                                <img src="images/thumbnails/orange.jpg" alt="Orange">
-                            </a>
+                            {% endfor %}
                         </div>
                     </section>
                 </div>
