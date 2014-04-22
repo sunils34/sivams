@@ -16,6 +16,10 @@
     margin-top: -6px;
 }
 
+.jumbotron.masthead .background {
+    background-repeat: no-repeat;
+}
+
 .jumbotron .container {
     background: rgba(0,0,0,.3)
 }
